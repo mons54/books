@@ -85,19 +85,24 @@ function countBooks(?string $query): int
 }
 
 
-function selectAuthors ($id){
+
+function selectAuthors ($authorId, $bookId) {
 
     $db = dbConnect();
 
-    $stmt = $db->prepare('SELECT * FROM books WHERE author_id = :id');
+    $stmt = $db->prepare("SELECT * FROM books WHERE author_id = :author_id AND id != :bookId");
 
-     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+     $stmt->bindParam(':author_id', $authorId, PDO::PARAM_INT);
+     $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
 
      $stmt->execute();
 
      return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 }
+
+
 
 /**
  * @param string $id Book id

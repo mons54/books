@@ -59,23 +59,24 @@
         <div class="col-md-12 mt-3">
           <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-dark">
-                  <li class="breadcrumb-item active text-center text-success" aria-current="page">Du même auteur : <?php echo $author; ?></li>
+                  <li class="breadcrumb-item active text-center text-success" aria-current="page">Du même auteur :</li>
               </ol>
           </nav>
         </div>
-        <div class="col-md-6 mt-3">
-
-            <div class="row">
-                <?php foreach ($booksAuthor as $book) { ?>
-
-                <div class="col-md-6 mt-3">
-                    <img
-                      src="<?php echo $book['image']; ?>"
-                      class="card-img-top"
-                      style="max-height: 500px;">
-                </div>
-            <?php } ?>
+        <div class="col-md-12 mt-3">
+            <div class="text-center">
+                <?php echo $author; ?>
             </div>
+        </div>
+        <div class="row">
+            <?php foreach ($booksAuthor as $book) { ?>
+            <div class="col-md-3 mt-3">
+                <img
+                  src="<?php echo $book['image']; ?>"
+                  class="card-img-top"
+                  style="max-height: 500px;">
+            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

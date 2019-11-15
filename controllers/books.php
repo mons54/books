@@ -35,7 +35,9 @@ function showBook (string $id): void
 {
   try {
     $book = getBook($id);
-    $booksAuthor = selectAuthors($book['author_id']);
+    $booksAuthor = selectAuthors($book['author_id'], $id);
+
+    
 
     global $breadcrumb;
     $breadcrumb[] = array(
