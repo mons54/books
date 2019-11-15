@@ -13,7 +13,7 @@ if (!isset($_GET['path']) || !$_GET['path']) {
   switch ((string) $_GET['path']) {
     case 'author':
       require('controllers/author.php');
-      author();
+      listAuthor();
       break;
     default:
       require('views/404.php');

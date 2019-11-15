@@ -4,10 +4,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-lg-8">
-      <h1>Liste de l'auteur</h1>
+      <?php
+      echo $author['name'];
+      ?>
+      
+      <?php
+      foreach ($books as $book) {
+        echo $book['title'];
+      }
+
+       ?>
+
+
+
     </div>
-
-
   </div>
 </div>
 
