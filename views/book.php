@@ -2,8 +2,6 @@
 <?php ob_start(); ?>
 <?php $author = $book['author'] ? $book['author'] : 'Inconnu'; ?>
 
-<?php var_dump($comments); ?>
-
 <div class="container">
   <?php if (isset($searchResult)) { ?>
     <div class="row">
@@ -15,10 +13,10 @@
   <div class="row">
     <div class="col-md-4 mt-3">
       <img
-        src="<?php echo $book['image']; ?>"
-        class="card-img-top"
-        alt="Image du livre <?php echo $book['title']; ?>"
-        style="max-height: 500px;">
+      src="<?php echo $book['image']; ?>"
+      class="card-img-top"
+      alt="Image du livre <?php echo $book['title']; ?>"
+      style="max-height: 500px;">
     </div>
     <div class="col-md-8 mt-3">
       <h1><?php echo $book['title']; ?></h1>
@@ -53,6 +51,17 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row"style="text-align:center">
+    <div class="col-md-12">
+      <h2 class="ml-12">Commentaires: </h2>
+      <?php foreach ($comments as $comment => $value): ?>
+        <h6 style="color:blue;">________________________________________</h6>
+        <h6 style="color:blue;">Date de création du commentaire : <?php echo $value['date_creation']; ?></h6>
+        <h6 style="color:green;">Commentaire de l'utilisateur n° <?php echo $value['user_id']; ?></h6>
+        <h6 style="color:orange;">Contenu du commentaire : "<?php echo $value['commentaire']; ?>"</h6>
+      <?php endforeach; ?>
     </div>
   </div>
 </div>

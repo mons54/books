@@ -125,7 +125,7 @@ function getComments($idBook): array
 
   $bdd = new PDO('mysql:host=localhost;dbname=books;charset=utf8', 'root', '');
 
-  $req = $bdd->prepare('SELECT commentaire FROM comments WHERE book_id= :idBook');
+  $req = $bdd->prepare('SELECT * FROM comments WHERE book_id= :idBook');
 
   $req->bindParam(':idBook', $idBook);
 
