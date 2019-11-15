@@ -15,6 +15,7 @@
   width: 100%;
 }
 
+
 </style>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -52,9 +53,9 @@
                 <p class="card-text text-muted">
                   <?php echo $book['language'] . ' (language)'; ?>
                 </p>
-                <p>
-                  <?php echo $book['country']; ?>
-                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="./?id=<?php echo $book['id'] ?>;" class="btn btn-primary">Lien vers le livre</a>
               </div>
             </div>
           </div>
