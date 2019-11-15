@@ -54,31 +54,37 @@
     </div>
   </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-3">
-          <nav aria-label="breadcrumb">
-              <ol class="breadcrumb bg-dark">
-                  <li class="breadcrumb-item active text-center text-success" aria-current="page">Du même auteur :</li>
-              </ol>
-          </nav>
-        </div>
-        <div class="col-md-12 mt-3">
-            <div class="text-center">
-                <?php echo $author; ?>
+ <?php if ($booksAuthor ) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb bg-dark">
+                      <li class="breadcrumb-item active text-center text-white" aria-current="page">Du même auteur :</li>
+                  </ol>
+              </nav>
             </div>
         </div>
         <div class="row">
-            <?php foreach ($booksAuthor as $book) { ?>
-            <div class="col-md-3 mt-3">
-                <img
-                  src="<?php echo $book['image']; ?>"
-                  class="card-img-top"
-                  style="max-height: 500px;">
+            <div class="col-md-12 mt-3">
+                <div class="text-center">
+                    <?php echo $author; ?> vous présente :
+                </div>
             </div>
+        </div> 
+        <div class="row">
+            <?php foreach ($booksAuthor as $book) { ?>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="<?php echo $book['image']; ?>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><?php echo $book['title']; ?></h5>
+                        </div>
+                  </div>
+                </div>
             <?php } ?>
         </div>
+<?php } ?>
     </div>
-</div>
 <?php $content = ob_get_clean(); ?>
 <?php require('public/index.php'); ?>
