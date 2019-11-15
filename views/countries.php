@@ -3,18 +3,28 @@
 <?php require_once('utils/db.php'); ?>
 <style>
 
-.book .image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .country .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 
-.book .image img {
-  height: 100%;
-  width: 100%;
-}
+  .country .image img {
+    height: 100%;
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .country .image {
+      height: 300px;
+    }
+  }
 
+  @media (min-width: 1200px) {
+    .country .image {
+      height: 360px;
+    }
+  }
 
 </style>
 <!DOCTYPE html>
