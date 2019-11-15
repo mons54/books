@@ -11,6 +11,10 @@ if (!isset($_GET['path']) || !$_GET['path']) {
   }
 } else {
   switch ((string) $_GET['path']) {
+    case 'countries':
+      require('controllers/countries.php');
+      country();
+      break;
     default:
       require('views/404.php');
   }
