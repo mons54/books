@@ -70,25 +70,10 @@
             </div>
           </div>
         <?php } ?>
-
       </div>
     </div>
-
-
-
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 <?php $content = ob_get_clean(); ?>
 <?php require('public/index.php'); ?>
