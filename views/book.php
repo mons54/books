@@ -47,12 +47,36 @@
           </tr>
           <tr>
             <td>Wikipedia</td>
-            <th><a href="<?php echo $book['wikipedia']; ?>">Voir</a></th>
+            <th><a href="<?php echo $book['wikipedia']; ?>"target="_blank">Voir</a></th>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-3">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-dark">
+                  <li class="breadcrumb-item active text-center text-success" aria-current="page">Du même auteur :</li>
+              </ol>
+          </nav>
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="info">
+              <?php echo $author; ?>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <img
+                      src="<?php echo $book['image']; ?>"
+                      class="card-img-top"
+                      style="max-height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('public/index.php'); ?>
