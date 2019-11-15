@@ -48,6 +48,10 @@ function showBook (string $id): void
       }
     }
     $comments = getComments($id);
+    $com=addComment();
+    var_dump($com);
+
+
     require ('views/book.php');
   } catch (Exception $e) {
     require('views/404.php');
