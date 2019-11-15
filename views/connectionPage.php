@@ -49,50 +49,18 @@ if (isset($_POST['submitI']))
 
 if (isset($_SESSION['submitC']))
 {
-  if(isset($_POST['username'], $_POST['password']))
+  $emailI = (string) $_POST['emailI'];
+  $passwordI = (string) $_POST['passwordI'];
+
+  echo "string";
+
+  if(isset($_POST['email'], $_POST['password']))
   {
-    //On echappe les variables pour pouvoir les mettre dans des requetes SQL
-    if(get_magic_quotes_gpc())
-    {
-      $ousername = stripslashes($_POST['username']);
-      $username = mysql_real_escape_string(stripslashes($_POST['username']));
-      $password = stripslashes($_POST['password']);
-    }
-    else
-    {
-      $username = mysql_real_escape_string($_POST['username']);
-      $password = $_POST['password'];
-    }
-    //On recupere le mot de passe de lutilisateur
-    $req = mysql_query('select password,id from users where username="'.$username.'"');
-    $dn = mysql_fetch_array($req);
-    //On le compare a celui quil a entre et on verifie si le membre existe
-    if($dn['password']==$password and mysql_num_rows($req)>0)
-    {
-      //Si le mot de passe es bon, on ne vas pas afficher le formulaire
-      $form = false;
-      //On enregistre son pseudo dans la session username et son identifiant dans la session userid
-      $_SESSION['username'] = $_POST['username'];
-      $_SESSION['userid'] = $dn['id'];
-    }
-    else
-    {
-      //Sinon, on indique que la combinaison nest pas bonne
-      $form = true;
-      $message = 'La combinaison que vous avez entr&eacute; n\'est pas bonne.';
-    }
+    echo "YES";
   }
   else
   {
-    $form = true;
-  }
-  if($form)
-  {
-    //On affiche un message sil y a lieu
-    if(isset($message))
-    {
-      echo '<div class="message">'.$message.'</div>';
-    }
+    echo "NO";
   }
 }
 
@@ -106,19 +74,18 @@ if (isset($_SESSION['submitC']))
 <?php $title = "Connection/inscription"; ?>
 <?php ob_start(); ?>
 
-
 <div class="bg-dark container text-white" style="padding-bottom: 1rem;">
   <div class="row">
     <div class="col">
-      <form class="" action="./" method="post">
+      <form class="" action="" method="post">
         <h2>connection</h2>
         <div class="form-group">
           <label for="inputEmail1">address mail</label>
-          <input name="" type="email" class="form-control" id="inputEmail1"  placeholder="Enter email" required>
+          <input name="username" type="email" class="form-control" id="inputEmail1"  placeholder="Enter email" required>
         </div>
         <div class="form-group">
           <label for="inputPassword1">mot de passe</label>
-          <input type="password" class="form-control" id="inputPassword1" aria-describedby="passHelp" placeholder="Password" required>
+          <input name="password" type="password" class="form-control" id="inputPassword1" aria-describedby="passHelp" placeholder="Password" required>
           <small id="passHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
         </div>
         <button class="sticky-bottom btn btn-primary btn-lg btn-block" type="submit" name="submitC">Connection</button>
