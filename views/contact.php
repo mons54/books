@@ -14,7 +14,7 @@
         <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> CONTACTEZ-NOUS !
         </div>
         <div class="card-body">
-          <form>
+          <form id="contact" action="?path=contact" method="post">
             <div class="form-group">
               <label for="name">Nom / prénom</label>
               <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" required>
@@ -28,7 +28,7 @@
               <textarea name="message" class="form-control" id="message" rows="6" required></textarea>
             </div>
             <div class="mx-auto">
-              <button type="submit" class="btn btn-primary text-right">Envoyer</button></div>
+              <button name="submitMail" type="submit" class="btn btn-primary text-right">Envoyer</button></div>
           </form>
         </div>
       </div>
@@ -47,6 +47,7 @@
     </div>
   </div>
 </div>
+
 
 <?php $content = ob_get_clean(); ?>
 <?php require('public/index.php'); ?>
