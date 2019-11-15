@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1> Listes des livres pour : </h1>
+          <h1> Listes des livres pour : <?php echo $country['name']; ?></h1>
         </div>
       </div>
       <div class="row">
