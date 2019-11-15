@@ -2,6 +2,8 @@
 <?php ob_start(); ?>
 <?php $author = $book['author'] ? $book['author'] : 'Inconnu'; ?>
 
+<?php var_dump($comments); ?>
+
 <div class="container">
   <?php if (isset($searchResult)) { ?>
     <div class="row">

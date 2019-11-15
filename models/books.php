@@ -4,11 +4,11 @@ require_once('utils/db.php');
 $limit = 20;
 
 /**
- * @param int $page
- * @param string $orderBy
- * @param string $query (optional)
- * @return array[]
- */
+* @param int $page
+* @param string $orderBy
+* @param string $query (optional)
+* @return array[]
+*/
 function getBooks(int $page = 1, string $orderBy, ?string $query): array
 {
   global $limit;
@@ -16,20 +16,20 @@ function getBooks(int $page = 1, string $orderBy, ?string $query): array
   $db = dbConnect();
 
   $request = 'SELECT
-    books.id,
-    books.title,
-    books.image,
-    books.year,
-    authors.name as author,
-    countries.name as country,
-    languages.name as language
-    FROM books
-    LEFT JOIN authors
-    ON books.author_id = authors.id
-    LEFT JOIN countries
-    ON books.country_id = countries.id
-    LEFT JOIN languages
-    ON books.language_id = languages.id
+  books.id,
+  books.title,
+  books.image,
+  books.year,
+  authors.name as author,
+  countries.name as country,
+  languages.name as language
+  FROM books
+  LEFT JOIN authors
+  ON books.author_id = authors.id
+  LEFT JOIN countries
+  ON books.country_id = countries.id
+  LEFT JOIN languages
+  ON books.language_id = languages.id
   ';
 
   $params = array();
@@ -55,9 +55,9 @@ function getBooks(int $page = 1, string $orderBy, ?string $query): array
 }
 
 /**
- * @param string $query (optional)
- * @return int
- */
+* @param string $query (optional)
+* @return int
+*/
 function countBooks(?string $query): int
 {
   $db = dbConnect();
@@ -85,32 +85,32 @@ function countBooks(?string $query): int
 }
 
 /**
- * @param string $id Book id
- * @throws Exception
- * @return array
- */
+* @param string $id Book id
+* @throws Exception
+* @return array
+*/
 function getBook(string $id): array
 {
   $db = dbConnect();
 
   $stmt = $db->prepare('SELECT
-    books.id,
-    books.title,
-    books.image,
-    books.year,
-    books.pages,
-    books.wikipedia_link as wikipedia,
-    authors.name as author,
-    countries.name as country,
-    languages.name as language
-    FROM books
-    LEFT JOIN authors
-    ON books.author_id = authors.id
-    LEFT JOIN countries
-    ON books.country_id = countries.id
-    LEFT JOIN languages
-    ON books.language_id = languages.id
-    WHERE books.id = :id
+  books.id,
+  books.title,
+  books.image,
+  books.year,
+  books.pages,
+  books.wikipedia_link as wikipedia,
+  authors.name as author,
+  countries.name as country,
+  languages.name as language
+  FROM books
+  LEFT JOIN authors
+  ON books.author_id = authors.id
+  LEFT JOIN countries
+  ON books.country_id = countries.id
+  LEFT JOIN languages
+  ON books.language_id = languages.id
+  WHERE books.id = :id
   ');
 
   $stmt->bindParam(':id', $id);
@@ -119,3 +119,19 @@ function getBook(string $id): array
 
   return $stmt->fetch();
 }
+
+function getComments($idBook): array
+{
+
+  $bdd = new PDO('mysql:host=localhost;dbname=books;charset=utf8', 'root', '');
+
+  $req = $bdd->prepare('SELECT commentaire FROM comments WHERE book_id= :idBook');
+
+  $req->bindParam(':idBook', $idBook);
+
+  $req->execute();
+
+  return $req->fetchAll(PDO::FETCH_ASSOC);
+
+}
+?>
