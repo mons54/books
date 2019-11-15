@@ -27,7 +27,7 @@
         <tbody>
           <tr>
             <td>Auteur</td>
-            <th><?php echo $author; ?></th>
+            <th><a href="?path=author&author=<?php echo $book['author_id'] ?>"> <?php echo $author; ?></a></th>
           </tr>
           <tr>
             <td>Date de parution</td>

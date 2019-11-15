@@ -74,9 +74,9 @@
             <div class="card-body">
               <h5 class="card-title title"><a href="<?php echo $link; ?>"><?php echo $book['title']; ?></a></h5>
               <p class="card-text text-muted">
-                <?php if ($book['author']) {
+                <a href="?path=author&author=<?php echo $book['author_id'] ?>"><?php if ($book['author']) {
                   echo $book['author'] . ' (Auteur)<br>';
-                } ?>
+                } ?></a>
                 Paru en <?php echo $book['year']; ?>
                 <br>
                 <?php echo $book['language'] . ' (Langue)'; ?>
