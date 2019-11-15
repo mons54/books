@@ -20,6 +20,7 @@
         <form id="search" class="form-inline my-2 my-lg-0 ml-auto" method="get">
           <input value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>" class="form-control mr-sm-2" type="search" placeholder="Rechercher un livre" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher un livre</button>
+          <a style="margin-left: 1rem;" href="./?path=connectionPage" class="btn btn-outline-primary my-2 my-sm-0">Connection/inscription</a>
         </form>
       </div>
     </nav>
