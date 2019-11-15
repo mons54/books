@@ -88,10 +88,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mt-3">
-                    <div class="card text-center"> Rien pour le moment.
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-dark">
+                            <li class="breadcrumb-item active text-white" aria-current="page">Du même auteur : pour le moment aucun ouvrage.</li>
+                        </ol>
                         <img src="https://previews.123rf.com/images/arcady31/arcady311705/arcady31170500048/77956942-d%C3%A9sol%C3%A9-signe-vecteur.jpg"
-                        width=250px height=250px align=center>
-                    </div>
+                        width=250px height=250px>
+                    </nav>
                 </div>
             </div>
         </div>
