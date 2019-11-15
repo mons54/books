@@ -11,6 +11,10 @@ if (!isset($_GET['path']) || !$_GET['path']) {
   }
 } else {
   switch ((string) $_GET['path']) {
+    case 'contact' :
+      require('controllers/contact.php');
+      contactForm();
+    break;
     default:
       require('views/404.php');
   }
