@@ -2,6 +2,7 @@
 <?php ob_start(); ?>
 <?php $author = $book['author'] ? $book['author'] : 'Inconnu'; ?>
 
+
 <div class="container">
     <?php if (isset($searchResult)) { ?>
         <div class="row">
@@ -74,12 +75,16 @@
             </div>
         </div>
         <div class="row">
-            <?php foreach ($booksAuthor as $book) { ?>
+            <?php foreach ($booksAuthor as $book) {
+                $link = './?id=' . $book['id']; ?>
                 <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
                         <img src="<?php echo $book['image']; ?>" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title text-center"><?php echo $book['title']; ?></h5>
+                            <h5 class="card-title text-center"><?php echo $book['title']; ?> </h5>
+                        </div>
+                        <div class="card-footer text-center">
+                          <a href="<?php echo $link; ?>" class="btn btn-primary">En savoir plus</a>
                         </div>
                   </div>
                 </div>
