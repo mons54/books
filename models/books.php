@@ -4,18 +4,18 @@ require_once('utils/db.php');
 $limit = 20;
 
 /**
- * @param int $page
- * @param string $orderBy
- * @param string $query (optional)
- * @return array[]
- */
+* @param int $page
+* @param string $orderBy
+* @param string $query (optional)
+* @return array[]
+*/
 function getBooks(int $page = 1, string $orderBy, ?string $query): array
 {
-  global $limit;
+    global $limit;
 
-  $db = dbConnect();
+    $db = dbConnect();
 
-  $request = 'SELECT
+    $request = 'SELECT
     books.id,
     books.title,
     books.image,
@@ -31,58 +31,58 @@ function getBooks(int $page = 1, string $orderBy, ?string $query): array
     ON books.country_id = countries.id
     LEFT JOIN languages
     ON books.language_id = languages.id
-  ';
+    ';
 
-  $params = array();
+    $params = array();
 
-  if ($query) {
-    $request .= ' WHERE books.title LIKE :query';
-    $params[':query'] = '%' . $query . '%';
-  }
-
-  $offset = ($page - 1) * $limit;
-
-  $stmt = $db->prepare($request . ' ORDER BY ' . $orderBy . ' LIMIT ' . $offset . ', ' . $limit);
-
-  if (!empty($params)) {
-    foreach ($params as $key => $value) {
-      $stmt->bindParam($key, $value);
+    if ($query) {
+        $request .= ' WHERE books.title LIKE :query';
+        $params[':query'] = '%' . $query . '%';
     }
-  }
 
-  $stmt->execute();
+    $offset = ($page - 1) * $limit;
 
-  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $db->prepare($request . ' ORDER BY ' . $orderBy . ' LIMIT ' . $offset . ', ' . $limit);
+
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            $stmt->bindParam($key, $value);
+        }
+    }
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 /**
- * @param string $query (optional)
- * @return int
- */
+* @param string $query (optional)
+* @return int
+*/
 function countBooks(?string $query): int
 {
-  $db = dbConnect();
+    $db = dbConnect();
 
-  $request = 'SELECT COUNT(*) FROM books';
+    $request = 'SELECT COUNT(*) FROM books';
 
-  $params = array();
+    $params = array();
 
-  if ($query) {
-    $request .= ' WHERE title LIKE :query';
-    $params[':query'] = '%' . $query . '%';
-  }
-
-  $stmt = $db->prepare($request);
-
-  if (!empty($params)) {
-    foreach ($params as $key => $value) {
-      $stmt->bindParam($key, $value);
+    if ($query) {
+        $request .= ' WHERE title LIKE :query';
+        $params[':query'] = '%' . $query . '%';
     }
-  }
 
-  $stmt->execute();
+    $stmt = $db->prepare($request);
 
-  return $stmt->fetchColumn();
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            $stmt->bindParam($key, $value);
+        }
+    }
+
+    $stmt->execute();
+
+    return $stmt->fetchColumn();
 }
 
 
@@ -106,15 +106,15 @@ function selectAuthors ($authorId, $bookId) {
 
 
 /**
- * @param string $id Book id
- * @throws Exception
- * @return array
- */
+* @param string $id Book id
+* @throws Exception
+* @return array
+*/
 function getBook(string $id): array
 {
-  $db = dbConnect();
+    $db = dbConnect();
 
-  $stmt = $db->prepare('SELECT
+    $stmt = $db->prepare('SELECT
     books.id,
     books.title,
     books.image,
@@ -134,11 +134,44 @@ function getBook(string $id): array
     LEFT JOIN languages
     ON books.language_id = languages.id
     WHERE books.id = :id
-  ');
+    ');
 
-  $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':id', $id);
 
-  $stmt->execute();
+    $stmt->execute();
 
-  return $stmt->fetch();
+    return $stmt->fetch();
 }
+
+function getComments($idBook): array
+{
+
+    $bdd = dbConnect();
+
+    $req = $bdd->prepare('SELECT * FROM comments WHERE book_id= :idBook');
+
+    $req->bindParam(':idBook', $idBook);
+
+    $req->execute();
+
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+function addComment($id, $commentaire): array
+{
+    var_dump($_POST['commentaire']);
+    $bdd = dbConnect();
+    $req = $bdd->prepare('INSERT INTO
+        comments (book_id, user_id, commentaire, date_creation)
+        VALUES(:book_id, 1,:commentaire,NOW() )
+    ');
+
+    $req->bindParam(':book_id', $id);
+    $req->bindParam(':commentaire', $commentaire);
+    $req->execute();
+
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+
+}
+?>

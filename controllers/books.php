@@ -8,10 +8,10 @@ $breadcrumb = array(array(
 ));
 
 /**
- * @param int $page
- * @param string $sort
- * @param string (optional) $query
- */
+* @param int $page
+* @param string $sort
+* @param string (optional) $query
+*/
 function listBooks(int $page = 1, string $sort, ?string $query): void
 {
   global $breadcrumb;
@@ -29,15 +29,15 @@ function listBooks(int $page = 1, string $sort, ?string $query): void
 }
 
 /**
- * @param string $id Book id
- */
+* @param string $id Book id
+*/
 function showBook (string $id): void
 {
   try {
     $book = getBook($id);
     $booksAuthor = selectAuthors($book['author_id'], $id);
 
-    
+
 
     global $breadcrumb;
     $breadcrumb[] = array(
@@ -51,6 +51,11 @@ function showBook (string $id): void
         $searchResult = $_SERVER['HTTP_REFERER'];
       }
     }
+
+    if (isset($_POST['commentaire'])) {
+        $com = addComment($id, (string) $_POST['commentaire']);
+    }
+    $comments = getComments($id);
 
     require ('views/book.php');
   } catch (Exception $e) {
