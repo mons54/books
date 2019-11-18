@@ -2,9 +2,8 @@
 <?php ob_start(); ?>
 <?php $author = $book['author'] ? $book['author'] : 'Inconnu'; ?>
 
-
 <div class="container">
-    <?php if (isset($searchResult)) { ?>
+  <?php if (isset($searchResult)) { ?>
         <div class="row">
             <div class="col-md-12">
                 <a href="<?php echo $searchResult; ?>">
@@ -30,7 +29,7 @@
         <tbody>
           <tr>
             <td>Auteur</td>
-            <th><?php echo $author; ?></th>
+            <th><a href="?path=author&author=<?php echo $book['author_id'] ?>"> <?php echo $author; ?></a></th>
           </tr>
           <tr>
             <td>Date de parution</td>
@@ -56,25 +55,24 @@
       </table>
     </div>
   </div>
-
-    <?php if ($booksAuthor ) { ?>
-        <div class="row">
-            <div class="col-md-12 mt-3">
-              <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb bg-dark">
-                      <li class="breadcrumb-item active text-center text-white" aria-current="page">Du même auteur :</li>
-                  </ol>
-              </nav>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 mt-3">
-                <div class="text-center">
-                    <?php echo $author; ?> vous présente :
-                </div>
-            </div>
-        </div>
-        <div class="row">
+  <?php if ($booksAuthor ) { ?>
+      <div class="row">
+          <div class="col-md-12 mt-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-dark">
+                    <li class="breadcrumb-item active text-center text-white" aria-current="page">Du même auteur :</li>
+                </ol>
+            </nav>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12 mt-3">
+              <div class="text-center">
+                  <?php echo $author; ?> vous présente :
+              </div>
+          </div>
+      </div>
+      <div class="row">
             <?php foreach ($booksAuthor as $book) {
                 $link = './?id=' . $book['id']; ?>
                 <div class="col-md-4">

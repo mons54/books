@@ -20,6 +20,7 @@ function getBooks(int $page = 1, string $orderBy, ?string $query): array
     books.title,
     books.image,
     books.year,
+    books.author_id,
     authors.name as author,
     countries.name as country,
     languages.name as language
@@ -120,6 +121,7 @@ function getBook(string $id): array
     books.year,
     books.pages,
     books.country_id,
+    books.author_id,
     books.wikipedia_link as wikipedia,
     authors.id as author_id,
     authors.name as author,
