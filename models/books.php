@@ -85,6 +85,26 @@ function countBooks(?string $query): int
   return $stmt->fetchColumn();
 }
 
+
+
+function selectAuthors ($authorId, $bookId) {
+
+    $db = dbConnect();
+
+    $stmt = $db->prepare("SELECT * FROM books WHERE author_id = :author_id AND id != :bookId");
+
+     $stmt->bindParam(':author_id', $authorId, PDO::PARAM_INT);
+     $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
+
+     $stmt->execute();
+
+     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
+
 /**
  * @param string $id Book id
  * @throws Exception
@@ -102,6 +122,7 @@ function getBook(string $id): array
     books.pages,
     books.author_id,
     books.wikipedia_link as wikipedia,
+    authors.id as author_id,
     authors.name as author,
     countries.name as country,
     languages.name as language
