@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="public/css/app.css">
 </head>
 
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="./">E-bibliothèque</a>
@@ -27,28 +28,24 @@
 
         <li class="nav-item">
           <a class="nav-link" href="#">Votre lien</a>
-        </li> 
-      
+        </li>
+
         -->
 
         <li class="nav-item">
           <a class="nav-link" href="?path=contact">Contact</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Espace utilisateur
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Connexion</a>
-            <a class="dropdown-item" href="#">un lien</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">administration</a>
-          </div>
-        </li>
       </ul>
       <form id="search" class="form-inline my-2 my-lg-0 ml-auto" method="get">
         <input value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>" class="form-control mr-sm-2" type="search" placeholder="Rechercher un livre" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher un livre</button>
+        <?php if (isset($_SESSION['id'])) { ?>
+          <a style="margin-left: 1rem;" href="./?path=user&id=<?php echo $_SESSION['id']; ?>" class="btn btn-outline-primary my-2 my-sm-0">
+            <?php echo $_SESSION['pseudo']; ?>
+          </a>
+        <?php } else { ?>
+          <a style="margin-left: 1rem;" href="./?path=login" class="btn btn-outline-primary my-2 my-sm-0">Se connecter</a>
+        <?php } ?>
       </form>
     </div>
   </nav>
