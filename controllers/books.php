@@ -35,6 +35,10 @@ function showBook (string $id): void
 {
   try {
     $book = getBook($id);
+    $booksAuthor = selectAuthors($book['author_id'], $id);
+
+
+
     global $breadcrumb;
     $breadcrumb[] = array(
       'active' => true,
@@ -52,7 +56,6 @@ function showBook (string $id): void
         $com = addComment($id, (string) $_POST['commentaire']);
     }
     $comments = getComments($id);
-
 
     require ('views/book.php');
   } catch (Exception $e) {
