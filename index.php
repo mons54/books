@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_GET['path']) || !$_GET['path']) {
   require('controllers/books.php');
   if (isset($_GET['id'])) {
@@ -11,9 +13,18 @@ if (!isset($_GET['path']) || !$_GET['path']) {
   }
 } else {
   switch ((string) $_GET['path']) {
+
     case 'countries':
       require('controllers/countries.php');
       country();
+      break;
+    case 'login':
+      require('controllers/login.php');
+      login();
+      break;
+    case 'contact' :
+      require('controllers/contact.php');
+      contactForm();
       break;
     default:
       require('views/404.php');
