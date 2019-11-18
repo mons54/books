@@ -35,6 +35,10 @@ function showBook (string $id): void
 {
   try {
     $book = getBook($id);
+    $booksAuthor = selectAuthors($book['author_id'], $id);
+
+    
+
     global $breadcrumb;
     $breadcrumb[] = array(
       'active' => true,
@@ -47,6 +51,7 @@ function showBook (string $id): void
         $searchResult = $_SERVER['HTTP_REFERER'];
       }
     }
+
     require ('views/book.php');
   } catch (Exception $e) {
     require('views/404.php');

@@ -17,6 +17,10 @@ if (!isset($_GET['path']) || !$_GET['path']) {
       require('controllers/login.php');
       login();
       break;
+    case 'contact' :
+      require('controllers/contact.php');
+      contactForm();
+      break;
     default:
       require('views/404.php');
   }
