@@ -13,6 +13,10 @@ if (!isset($_GET['path']) || !$_GET['path']) {
   }
 } else {
   switch ((string) $_GET['path']) {
+    case 'countries':
+      require('controllers/countries.php');
+      country();
+      break;
     case 'author':
       require('controllers/author.php');
       listAuthor();

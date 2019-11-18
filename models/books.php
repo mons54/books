@@ -120,6 +120,7 @@ function getBook(string $id): array
     books.image,
     books.year,
     books.pages,
+    books.country_id,
     books.author_id,
     books.wikipedia_link as wikipedia,
     authors.id as author_id,

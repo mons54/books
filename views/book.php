@@ -2,7 +2,6 @@
 <?php ob_start(); ?>
 <?php $author = $book['author'] ? $book['author'] : 'Inconnu'; ?>
 
-
 <div class="container">
   <?php if (isset($searchResult)) { ?>
         <div class="row">
@@ -38,7 +37,7 @@
           </tr>
           <tr>
             <td>Pays</td>
-            <th><?php echo $book['country']; ?></th>
+            <th><a href="?path=countries&country=<?php echo $book['country_id']; ?>" ><?php echo $book['country']; ?><a></th>
           </tr>
           <tr>
             <td>Langue</td>
