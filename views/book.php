@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <form action="book.php" method="post">
+    <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="comment">Commentaire :</label>

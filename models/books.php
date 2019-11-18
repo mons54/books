@@ -123,7 +123,7 @@ function getBook(string $id): array
 function getComments($idBook): array
 {
 
-    $bdd = new PDO('mysql:host=localhost;dbname=books;charset=utf8', 'root', '');
+    $bdd = dbConnect();
 
     $req = $bdd->prepare('SELECT * FROM comments WHERE book_id= :idBook');
 
@@ -135,11 +135,19 @@ function getComments($idBook): array
 
 }
 
-function addComment(): array
+function addComment($id, $commentaire): array
 {
-    $bdd = new PDO('mysql:host=localhost;dbname=books;charset=utf8', 'root', '');
-    $req = $bdd->prepare('INSERT INTO comments (commentaire) VALUES(?)');
-    $req->execute($_POST['commentaire']);
+    var_dump($_POST['commentaire']);
+    $bdd = dbConnect();
+    $req = $bdd->prepare('INSERT INTO
+        comments (book_id, user_id, commentaire, date_creation)
+        VALUES(:book_id, 1,:commentaire,NOW() )
+    ');
+
+    $req->bindParam(':book_id', $id);
+    $req->bindParam(':commentaire', $commentaire);
+    $req->execute();
+
     return $req->fetchAll(PDO::FETCH_ASSOC);
 
 }

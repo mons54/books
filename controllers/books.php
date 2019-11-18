@@ -47,9 +47,11 @@ function showBook (string $id): void
         $searchResult = $_SERVER['HTTP_REFERER'];
       }
     }
+
+    if (isset($_POST['commentaire'])) {
+        $com = addComment($id, (string) $_POST['commentaire']);
+    }
     $comments = getComments($id);
-    $com=addComment();
-    var_dump($com);
 
 
     require ('views/book.php');
