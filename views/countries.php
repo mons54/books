@@ -65,7 +65,7 @@
                 </p>
               </div>
               <div class="card-footer text-center">
-                <a href="./?id=<?php echo $book['id'] ?>;" class="btn btn-primary">Lien vers le livre</a>
+                <a href="./?id=<?php echo $book['id']; ?>" class="btn btn-primary">Lien vers le livre</a>
               </div>
             </div>
           </div>
