@@ -5,7 +5,7 @@ function listAuthor() {
   $authorId = $_GET['author'];
   $author = selectAuthors($authorId);
 
-  $books = booksAuthor($authorId);
+  $bookAuthor = booksAuthor($authorId);
   require('views/author.php');
 }
 
